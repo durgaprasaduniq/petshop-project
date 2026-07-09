@@ -1,0 +1,21 @@
+- hosts: aws
+  remote_user: root
+  become: yes
+  tasks:
+    - name: install docker
+      yum:
+        name: docker
+        state: installed
+      notify:
+        - restartservice
+        
+    - name: install java-21
+      yum:
+        name: java-21
+        state: installed
+        
+  handlers:
+    - name: restartservice
+      shell:
+        cmd: |
+          systemctl start docker;

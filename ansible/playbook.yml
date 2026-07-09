@@ -1,0 +1,13 @@
+- hosts: aws
+  remote_user: root
+  become: yes
+  tasks:
+    - name: install nginx
+      yum:
+        name: nginx
+        state: installed
+
+    - name: start service and enable
+      service:
+        name: nginx
+        state: started

@@ -1,0 +1,29 @@
+- hosts: aws
+  remote_user: root
+  become: yes
+  tasks:
+    - name: install java-21
+      yum:
+        name: java-21
+        state: installed
+
+    - name: install ansible
+      yum:
+        name: ansible
+        state: installed
+
+    - name: install jenkins
+      shell:
+        cmd: |
+           wget -O /etc/yum.repos.d/jenkins.repo \
+           https://pkg.jenkins.io/rpm-stable/jenkins.repo;
+           yum install jenkins -y;
+           systemctl start jenkins;
+
+    - name: install terraform
+      shell:
+        cmd: |
+          sudo yum install -y yum-utils shadow-utils;
+          sudo yum-config-manager --add-repo https://rpm.releases.hashicorp.com/AmazonLinux/hashicorp.repo;
+          sudo yum install terraform -y;
+

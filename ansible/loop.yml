@@ -1,0 +1,19 @@
+- hosts: aws
+  remote_user: root
+  become: yes
+  vars:
+    packages:
+      - java
+      - nmap
+      - docker
+      - nginx
+
+  tasks:
+    - name: "install software"
+      yum:
+        name: "{{item}}"
+        state: installed
+      loop: "{{packages}}"
+
+
+

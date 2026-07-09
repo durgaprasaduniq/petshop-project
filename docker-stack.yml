@@ -1,0 +1,27 @@
+version: "3.8"
+services:
+
+  web1:
+    image: nginx
+    container_name: my-cont-1
+    ports:
+      - "8000:80"
+    deploy:
+      replicas: 3
+
+
+  web2:
+    image: tomcat
+    container_name: my-cont-2
+    ports:
+      - "8081:8080"
+    deploy:
+      replicas: 2
+
+  web3:
+    image: durgaprasaduniq/prasad:v2
+    container_name: my-cont-3
+    ports:
+      - "8090:8080"
+    deploy:
+     replicas: 3
