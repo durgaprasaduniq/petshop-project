@@ -6,7 +6,7 @@ metadata:
     env: dev
     app: tomcat
 spec:
-  type: LoadBalancer
+  type: NodePort
   selector:
     env: dev
     app: tomcat
