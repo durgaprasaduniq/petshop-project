@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: my-cont
+  name: my-crashcont
   labels:
     env: dev
     app: tomcat
@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
         - name: my-cont
-          image: durgaprasaduniq/my-mine:v3
+          image: durgaprasaduniq/crash:loop
           ports:
             - containerPort: 8080
               
