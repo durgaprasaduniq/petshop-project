@@ -27,14 +27,14 @@ jobs:
       - name: Build Pet Shop
         run: mvn clean package
 
-      - name: Check generated JAR
-        run: ls -lh target/*.jar
+      - name: Check generated War
+        run: ls -lh target/*.war
 
-      - name: Upload JAR
+      - name: Upload WAR
         uses: actions/upload-artifact@v4
         with:
           name: petshop-app
-          path: target/*.jar
+          path: target/*.war
           if-no-files-found: error
 
   deploy:
@@ -45,7 +45,7 @@ jobs:
       id-token: write
 
     steps:
-      - name: Download JAR
+      - name: Download WAR
         uses: actions/download-artifact@v4
         with:
           name: petshop-app
@@ -62,4 +62,4 @@ jobs:
         uses: azure/webapps-deploy@v3
         with:
           app-name: java-web
-          package: artifact/*.jar
+          package: artifact/*.war
